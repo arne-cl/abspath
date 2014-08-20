@@ -1,0 +1,34 @@
+#!/usr/bin/python
+# Author: Arne Neumann
+# based on Diggory Hardy's <diggory.hardy@gmail.com> SO question
+# stackoverflow.com/q/3915040
+#
+# Purpose: print the absolute paths of all given files,
+# piped via stdin or as arguments
+
+import sys
+import os
+
+def print_usage():
+	print >> sys.stderr, "abspath prints the absolute paths of all " \
+		"input files\n"
+	print >> sys.stderr, "Usage: abspath file1.txt path/to/file2.pdf"
+	print >> sys.stderr, "       abspath Desktop/*"
+	print >> sys.stderr, "       find . -name *.pdf | abspath"
+
+if len(sys.argv) > 1:
+	for i in range(1, len(sys.argv)):
+		print os.path.abspath(sys.argv[i])
+	sys.exit(0)
+else:
+	# no file names given in sys.argv
+	if not sys.stdin.isatty(): 
+		# stdin is connected to a pipe. read file names from there
+		for line in sys.stdin:
+			print os.path.abspath(line.strip())
+		sys.exit(0)
+	else: 
+		# sys.stdin is not connected to a pipe, 
+		# i.e. there were no file names given at all
+		print_usage()
+		sys.exit(1)
