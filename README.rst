@@ -1,6 +1,20 @@
 abspath
 =======
 
+.. image:: http://img.shields.io/pypi/dm/abspath.svg
+   :alt: PyPI download counter
+   :align: right
+   :target: https://pypi.python.org/pypi/abspath#downloads
+.. image:: http://img.shields.io/pypi/v/abspath.svg
+   :alt: Latest version
+   :align: right
+   :target: https://pypi.python.org/pypi/abspath
+.. image:: http://img.shields.io/badge/license-BSD-yellow.svg
+   :alt: BSD License
+   :align: right
+   :target: http://opensource.org/licenses/BSD-3-Clause
+
+
 ``abspath`` is a command line tool that prints the absolute paths of all given
 files. File names can be piped via ``STDIN`` or given as arguments.
 
@@ -17,7 +31,7 @@ Installation
 ------------
 
 Installation from PyPI
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
