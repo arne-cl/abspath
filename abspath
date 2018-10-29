@@ -6,26 +6,28 @@
 # Purpose: print the absolute paths of all given files,
 # piped via stdin or as arguments
 
+from __future__ import print_function
+
 import sys
 import os
 
 def print_usage():
-	print >> sys.stderr, "abspath prints the absolute paths of all " \
-		"input files\n"
-	print >> sys.stderr, "Usage: abspath file1.txt path/to/file2.pdf"
-	print >> sys.stderr, "       abspath Desktop/*"
-	print >> sys.stderr, "       find . -name *.pdf | abspath"
+	print("abspath prints the absolute paths of all input files\n", file=sys.stderr)
+
+	print("Usage: abspath file1.txt path/to/file2.pdf", file=sys.stderr)
+	print("       abspath Desktop/*", file=sys.stderr)
+	print("       find . -name *.pdf | abspath", file=sys.stderr)
 
 if len(sys.argv) > 1:
 	for i in range(1, len(sys.argv)):
-		print os.path.abspath(sys.argv[i])
+		print(os.path.abspath(sys.argv[i]))
 	sys.exit(0)
 else:
 	# no file names given in sys.argv
 	if not sys.stdin.isatty(): 
 		# stdin is connected to a pipe. read file names from there
 		for line in sys.stdin:
-			print os.path.abspath(line.strip())
+			print(os.path.abspath(line.strip()))
 		sys.exit(0)
 	else: 
 		# sys.stdin is not connected to a pipe, 
